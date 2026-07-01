@@ -1,8 +1,8 @@
 class Block {
     constructor(
-            private data:string
+        private data:string
     ) {}
     static hello():string {
-            return "Hello";
+        return "Hello";
     }
 }
