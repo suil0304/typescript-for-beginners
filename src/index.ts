@@ -25,3 +25,33 @@ class Block implements BlockShape {
             .digest("hex");
     }
 }
+
+class BlockChain {
+    private blocks:Block[];
+
+    constructor() {
+        this.blocks = [];
+    }
+
+    private getPrevHash():string {
+        const block = this.blocks[Math.max(this.blocks.length - 1, 0)];
+        return block ? block.hash : "";
+    }
+
+    public addBlock(data:string):void {
+        const block = new Block(this.getPrevHash(), this.blocks.length + 1, data);
+        this.blocks.push(block);
+    }
+
+    public printBlocks():void {
+        console.log(this.blocks);
+    }
+}
+
+const blockChain = new BlockChain();
+
+blockChain.addBlock("aa");
+blockChain.addBlock("bb");
+blockChain.addBlock("cc");
+
+blockChain.printBlocks();
